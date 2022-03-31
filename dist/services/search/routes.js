@@ -9,16 +9,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const httpErrors_1 = require("../../utils/httpErrors");
+const SearchController_1 = require("./SearchController");
 exports.default = [
     {
-        path: "/",
+        path: "/api/v1/search",
         method: "get",
-        handler: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-            let err = new httpErrors_1.HTTP401Error();
-            console.log("err", err.name);
-            throw err;
-        })
+        handler: [
+            ({ query }, res) => __awaiter(void 0, void 0, void 0, function* () {
+                const result = yield (0, SearchController_1.getPlacesByName)(query.q);
+                res.status(200).send(result);
+            })
+        ]
     }
 ];
 //# sourceMappingURL=routes.js.map
