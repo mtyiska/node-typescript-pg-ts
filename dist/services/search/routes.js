@@ -9,12 +9,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const httpErrors_1 = require("../../utils/httpErrors");
 exports.default = [
     {
         path: "/",
         method: "get",
         handler: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-            res.send("Hello world!");
+            let err = new httpErrors_1.HTTP401Error();
+            console.log("err", err.name);
+            throw err;
         })
     }
 ];
